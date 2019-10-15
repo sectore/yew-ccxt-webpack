@@ -1,0 +1,15 @@
+[package]
+name = "npm_and_rest"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+failure = "0.1"
+serde = "1"
+serde_derive = "1"
+stdweb = "0.4.20"
+wasm-bindgen = "0.2.42"
+yew = { git = "https://github.com/yewstack/yew.git", rev = "5056b84"}
