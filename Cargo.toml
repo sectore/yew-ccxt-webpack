@@ -6,10 +6,30 @@ edition = "2018"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[features]
+default = ["console_error_panic_hook"]
+
 [dependencies]
+log = "0.4"
 failure = "0.1"
 serde = "1"
 serde_derive = "1"
 stdweb = "0.4.20"
-wasm-bindgen = "0.2.42"
+web_logger = "0.2"
+wasm-bindgen = "0.2.50"
+# latest master of `yew` is something like v0.10.0
 yew = { git = "https://github.com/yewstack/yew.git", rev = "5056b84"}
+
+# The `console_error_panic_hook` crate provides better debugging of panics by
+# logging them with `console.error`. This is great for development, but requires
+# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
+# code size when deploying.
+console_error_panic_hook = { version = "0.1.6", optional = true }
+
+# `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
+# compared to the default allocator's ~10K. It is slower than the default
+# allocator, however.
+wee_alloc = { version = "0.4.5", optional = true }
+
+[dev-dependencies]
+wasm-bindgen-test = "=0.2.50"
